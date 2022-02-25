@@ -5,7 +5,7 @@ function respondCreated(res, data) {
         'status': 'success',
         'status_code': StatusCodes.CREATED,
         'data': data,
-        'message': 'عملیات درج اطلاعات با موفقیت صورت گرفت'
+        'message': 'عملیات درج اطلاعات با موفقیت صورت گرفت.'
     })
 }
 

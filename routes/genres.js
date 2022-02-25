@@ -2,7 +2,7 @@ const {Genre, validate} = require('../models/genre');
 const express = require('express');
 const router = express.Router();
 
-const {Response} = require('../tools/response/response');
+const {Response} = require('../tools/http/response');
 
 
 router.get('/', async (req, res) => {
