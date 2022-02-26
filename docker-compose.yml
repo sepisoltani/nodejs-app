@@ -6,12 +6,13 @@ services:
     restart: always
     environment:
       - NODE_ENV=development
-      - PORT=5000
+      - PORT=3000
     build: .
     ports:
       - "3000:3000"
     volumes:
-      - .:/usr/src/app
+      - .:/var/www/nodejs-app
+      - ./src/node_modules/:/var/www/nodejs-app/src/node_modules
     links:
       - mongo
     depends_on:
