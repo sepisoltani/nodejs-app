@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "ts-node --project /var/www/nodejs-app/tsconfig.json  /var/www/nodejs-app/src/bin/www.ts"
+    "start": "ts-node --project ../tsconfig.json bin/www.ts",
+    "start:watch": "nodemon  bin/www.ts"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
