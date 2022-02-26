@@ -12,7 +12,7 @@ services:
       - "3000:3000"
     volumes:
       - .:/var/www/nodejs-app
-      - ./src/node_modules/:/var/www/nodejs-app/src/node_modules
+      - /var/www/nodejs-app/src/node_modules
     links:
       - mongo
     depends_on:
