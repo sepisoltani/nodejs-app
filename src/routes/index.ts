@@ -6,4 +6,4 @@ router.get('/', function (req, res, next) {
     res.status(200).send('hello');
 });
 
-module.exports = router;
+export default router;
