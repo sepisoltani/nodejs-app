@@ -8,6 +8,7 @@
     "start:dev:pm2": "pm2-dev start ts-node -- --project ../tsconfig.json bin/www.ts"
   },
   "dependencies": {
+    "axios": "^0.26.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "dotenv": "^16.0.0",

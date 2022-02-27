@@ -1,4 +1,3 @@
-import createError from "http-errors";
 import express from 'express';
 import cookieParser from "cookie-parser";
 import helmet from "helmet";
@@ -31,21 +30,12 @@ app.use('/', indexRouter);
 dbConnect();
 
 
+//handling uncaughtException errors
 process.on('uncaughtException', err => {
-    logger.error({
-        "error": err,
-        "message": "Uncaught Exception thrown"
-    })
+    logger.error({"error": err.message, "message": "Uncaught Exception thrown"})
     process.exit(1);
 });
 
-process.on('unhandledRejection', (reason, promise) => {
-    logger.error({
-        "error": "unhandledRejection",
-        "message": "Unhandled rejection at " + promise
-    });
-    process.exit(1);
-})
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

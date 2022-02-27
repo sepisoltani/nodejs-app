@@ -1,21 +1,18 @@
 import express, {Request, Response, NextFunction} from "express";
 import {HttpResponse} from '../tools/http/response'
+import Binance from '../services/binance/api'
 
 const router = express.Router();
 
+router.get('/', async function (req: Request, res: Response, next: NextFunction) {
 
-function getBinanceData() {
-    return new Promise((resolve, reject) => {
-        reject(new Error("Curl error!"))
-    });
-}
-
-
-router.get('/', async function (req: Request, res: Response, next) {
-
-
-   return HttpResponse.respond(res,"OK")
-
+    const binance = new Binance("KEY", "SECRET");
+    try {
+        const result = await binance.ping();
+        return HttpResponse.respond(res, result.data)
+    } catch (err) {
+        next(err)
+    }
 });
 
 export default router;
