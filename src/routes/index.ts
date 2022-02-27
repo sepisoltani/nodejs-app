@@ -14,7 +14,7 @@ function getBinanceData() {
 router.get('/', async function (req: Request, res: Response, next) {
 
 
-    const data = await getBinanceData();
+   return HttpResponse.respond(res,"OK")
 
 });
 
