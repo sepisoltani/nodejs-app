@@ -6,6 +6,8 @@ import indexRouter from "./routes";
 import dbConnect from "./startup/db";
 import logger from "./startup/logging";
 import dotenv from 'dotenv'
+import {HttpResponse} from './tools/http/response'
+import {DateClass} from './tools/http/date'
 
 
 //doenv config init
@@ -28,21 +30,40 @@ app.use('/', indexRouter);
 //startup modules
 dbConnect();
 
+
+process.on('uncaughtException', err => {
+    logger.error({
+        "error": err,
+        "message": "Uncaught Exception thrown"
+    })
+    process.exit(1);
+});
+
+process.on('unhandledRejection', (reason, promise) => {
+    logger.error({
+        "error": "unhandledRejection",
+        "message": "Unhandled rejection at " + promise
+    });
+    process.exit(1);
+})
+
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-    console.log(req)
-    next(createError(404));
+    return HttpResponse.respondNotFound(res)
 });
+
 
 // error handler
 app.use(function (err, req, res, next) {
-    // set locals, only providing error in development
-    res.locals.message = err.message;
-    res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-    // render the error page
-    res.status(err.status || 500);
-    res.send(err);
+    //log exception
+    logger.error({
+        message: err.message,
+        method: req.method,
+        endpoint: req.url,
+        body: req.body,
+        time: DateClass.getCurrentDatetimeString(),
+    })
+    return HttpResponse.respondInternalServerError(res)
 });
 
 module.exports = app;
