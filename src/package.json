@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "ts-node --project ../tsconfig.json bin/www.ts",
-    "start:watch": "nodemon -x  ts-node --project ../tsconfig.json bin/www.ts"
+    "start:watch": "nodemon -x  ts-node --project ../tsconfig.json bin/www.ts",
+    "start:pm2": "pm2 start ts-node -P ../tsconfig.json bin/www.ts"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",

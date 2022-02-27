@@ -4,7 +4,7 @@ COPY src/package.json /var/www/node_modules_cache/
 COPY . .
 RUN npm install -g typescript
 RUN npm install -g ts-node
-RUN npm install -g nodemon
+RUN npm install -g pm2@latest
 WORKDIR /var/www/node_modules_cache/
 RUN npm install
 EXPOSE 3000
