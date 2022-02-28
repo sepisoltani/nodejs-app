@@ -1,10 +1,9 @@
 .idea
 .vscode
 .DS_Store
-src/logs
+src/logs/*
 src/package-lock.json
 node_modules/
 src/node_modules
-src/.env.development
+src/.env.production
 src/dist
-src/logs
